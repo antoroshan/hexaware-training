@@ -1,0 +1,60 @@
+select db_name() as cdb;
+select db_name(1) as mdb;
+select OBJECT_ID('dbo.ipltable') as tableId;
+select SCHEMA_NAME(1) as sm;
+ 
+select * from ipltable;
+ 
+select COL_LENGTH('playerdata','Age') as collen;
+select HOST_NAME() as hc;
+select suser_name() as sn;
+select @@SPID as u
+select @@SERVERNAME as sn;
+ 
+select * from ipltable;
+ 
+select sum(winscore) from ipltable;
+select avg(winscore) from ipltable;
+select count(*) from ipltable;
+select max(winscore) from ipltable;
+select min(winscore) from ipltable;
+ 
+select winscore as nom , sum(winscore) as totalwin from ipltable group by winscore having winscore>5;
+ 
+ 
+CREATE TABLE Sales (
+    Region VARCHAR(50),
+    ProductCategory VARCHAR(50),
+    SalesAmount DECIMAL(10,2)
+);
+ 
+INSERT INTO Sales (Region, ProductCategory, SalesAmount) VALUES
+('North', 'Electronics', 1000),
+('North', 'Furniture', 1500),
+('South', 'Electronics', 2000),
+('South', 'Furniture', 2500),
+('East', 'Electronics', 3000),
+('East', 'Furniture', 3500),
+('West', 'Electronics', 4000),
+('West', 'Furniture', 4500);
+ 
+ 
+select Region,ProductCategory,sum(SalesAmount) as TotalSales,
+GROUPING(Region) as isRegionTotal, GROUPING(ProductCategory) as isCatagoryTotal 
+from sales group by rollup(Region,ProductCategory);
+ 
+ 
+create table employees(EmployeeID int primary key,EmployeeName varchar(50), departmentID int);
+ 
+insert into employees values(1,'shubham',101),(2,'saksham',104),(3,'bham',103),(4,'bhavu',101),(5,'meesha',102),(6,'krishna',103);
+ 
+drop table employees;
+ 
+create table department(
+departmentID int primary key,
+departmentName varchar(50));
+ 
+insert into department values(101,'IT'),(102,'HR'),(103,'Finance'),(104,'inventry');
+ 
+select e.EmployeeID,e.EmployeeName,e.DepartmentID,d.departmentName 
+from Employees e inner join department d on e.DepartmentID= d.DepartmentID;
