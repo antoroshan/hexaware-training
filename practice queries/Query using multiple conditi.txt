@@ -1,9 +1,0 @@
--- 22. Query using multiple conditions
--- (Assuming an Age column exists)
-ALTER TABLE Customers
-ADD Age INT;
-UPDATE Customers SET Age = 30 WHERE CustomerID = 1;
-UPDATE Customers SET Age = 35 WHERE CustomerID = 2;
-UPDATE Customers SET Age = 28 WHERE CustomerID = 3;
-UPDATE Customers SET Age = 26 WHERE CustomerID = 4;
-UPDATE Customers SET Age = 40 WHERE CustomerID = 6;
